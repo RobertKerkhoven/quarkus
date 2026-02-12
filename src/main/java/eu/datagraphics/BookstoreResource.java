@@ -1,29 +1,39 @@
 package eu.datagraphics;
 
 
+import eu.datagraphics.dto.BookstoreDto;
 import eu.datagraphics.entity.Bookstore;
+import eu.datagraphics.repository.BookstoreRepository;
+import eu.datagraphics.service.BookstoreService;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Path("/bookstore")
+@Produces(MediaType.APPLICATION_JSON)
 public class BookstoreResource {
 
     @Inject
-    EntityManager em;
+    BookstoreService service;
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public List<Bookstore> getBooks() {
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public BookstoreDto getBookById(@PathParam("id") Long id) {
+        return service.getBookById(id);
+    }
 
-        List<Bookstore> books = em.createQuery("from Bookstore", Bookstore.class).getResultList();
-
-        return books;
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<BookstoreDto> getBooks() {
+        return service.getAllBooks();
     }
 
 }
