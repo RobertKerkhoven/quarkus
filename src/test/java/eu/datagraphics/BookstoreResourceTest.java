@@ -25,4 +25,16 @@ class BookstoreResourceTest {
                 .body("[1].year", equalTo(2008));
     }
 
+    @Test
+    void testBookstoreFindByIdEndpoint() {
+        given()
+                .when().get("/bookstore/1")
+                .then()
+                .statusCode(200)
+                .body("id", equalTo(1))
+                .body("bookname", equalTo("Effective Java"))
+                .body("author", equalTo("Joshua Bloch"))
+                .body("year", equalTo(2018));
+    }
+
 }
