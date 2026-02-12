@@ -2,18 +2,14 @@ package eu.datagraphics;
 
 
 import eu.datagraphics.dto.BookstoreDto;
-import eu.datagraphics.entity.Bookstore;
-import eu.datagraphics.repository.BookstoreRepository;
 import eu.datagraphics.service.BookstoreService;
 import jakarta.inject.Inject;
-import jakarta.persistence.EntityManager;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Path("/bookstore")
