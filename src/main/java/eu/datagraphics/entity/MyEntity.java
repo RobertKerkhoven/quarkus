@@ -1,4 +1,4 @@
-package eu.datagraphics;
+package eu.datagraphics.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
