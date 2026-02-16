@@ -2,13 +2,14 @@ package eu.datagraphics;
 
 
 import eu.datagraphics.dto.BookstoreDto;
+import eu.datagraphics.dto.BookstoreUpdateDto;
+import eu.datagraphics.entity.Bookstore;
 import eu.datagraphics.service.BookstoreService;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.Produces;
+import jakarta.persistence.OptimisticLockException;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
@@ -30,6 +31,23 @@ public class BookstoreResource {
     @Produces(MediaType.APPLICATION_JSON)
     public List<BookstoreDto> getBooks() {
         return service.getAllBooks();
+    }
+
+    @PUT
+    @Path("/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response update(@PathParam("id") Long id, BookstoreUpdateDto dto) {
+
+        try {
+            Bookstore updated = service.update(id, dto);
+            return Response.ok(updated).build();
+
+        } catch (OptimisticLockException e) {
+            return Response.status(Response.Status.CONFLICT)
+                    .entity("Entity was modified by another user")
+                    .build();
+        }
     }
 
 }

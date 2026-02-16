@@ -1,35 +1,37 @@
 package eu.datagraphics.entity;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "bookstore")
-public class Bookstore {
+public class Bookstore extends PanacheEntityBase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
 
     @Column(name = "bookname", nullable = false, length = 255)
-    private String bookname;
+    public String bookname;
 
     @Column(name = "author", nullable = false, length = 255)
-    private String author;
+    public String author;
 
     @Column(name = "year")
-    private Integer year;
+    public Integer year;
 
     @Version
-    private Long version;
+    public Long version;
 
     // Required by JPA
-    protected Bookstore() {
+    public Bookstore() {
     }
 
-    public Bookstore(String bookname, String author, Integer year) {
+    public Bookstore(String bookname, String author, Integer year, Long version) {
         this.bookname = bookname;
         this.author = author;
         this.year = year;
+        this.version =  version;
     }
 
     // Getters and setters
@@ -64,6 +66,10 @@ public class Bookstore {
 
     public Long getVersion() {
         return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 }
 

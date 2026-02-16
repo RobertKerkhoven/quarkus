@@ -1,75 +1,34 @@
 package eu.datagraphics.dto;
 
 import eu.datagraphics.entity.Bookstore;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.json.bind.annotation.JsonbTransient;
+import jakarta.persistence.Version;
 
 public class BookstoreDto {
 
-    private Long id;
-    private String bookname;
-    private String author;
-    private Integer year;
-    private Long version;
+    @JsonbProperty("Id")
+    public Long id;
 
-    public BookstoreDto() {
+    @JsonbProperty("Bookname")
+    public String bookname;
+
+    @JsonbProperty("Author")
+    public String author;
+
+    @JsonbProperty("Year")
+    public Integer year;
+
+    @Version
+    private Long version; // hidden from JSON
+
+    public BookstoreDto(Bookstore entity) {
+        this.id = entity.getId();
+        this.bookname = entity.getBookname();
+        this.author = entity.getAuthor();
+        this.year = entity.getYear();
+        this.version = entity.getVersion();
     }
 
-    public BookstoreDto(Long id, String bookname, String author, Integer year, Long version) {
-        this.setId(id);
-        this.setBookname(bookname);
-        this.setAuthor(author);
-        this.setYear(year);
-        this.setVersion(version);
-    }
-
-    // STATIC METHOD TO MAP ENTITY TO DTO
-    public static BookstoreDto fromEntity(Bookstore entity) {
-        return new BookstoreDto(
-                entity.getId(),
-                entity.getBookname(),
-                entity.getAuthor(),
-                entity.getYear(),
-                entity.getVersion()
-        );
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getBookname() {
-        return bookname;
-    }
-
-    public void setBookname(String bookname) {
-        this.bookname = bookname;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public Integer getYear() {
-        return year;
-    }
-
-    public void setYear(Integer year) {
-        this.year = year;
-    }
-
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
-    }
 }
 
