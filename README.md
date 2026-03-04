@@ -23,7 +23,7 @@ You can run your application in dev mode that enables live coding using:
 
 ## Swagger-UI
 
-http://localhost:8888/q/dev-ui/quarkus-smallrye-openapi/swagger-ui
+http://localhost:8090/q/dev-ui/quarkus-smallrye-openapi/swagger-ui
 
 
 ## Packaging and running the application

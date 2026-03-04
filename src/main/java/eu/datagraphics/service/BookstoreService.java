@@ -50,7 +50,7 @@ public class BookstoreService {
         detached.author = dto.author;
         detached.year = dto.year;
 
-        return em.merge(detached); // Panache uses merge internally
+        return em.merge(detached);
     }
 
 }

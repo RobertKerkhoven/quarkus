@@ -18,6 +18,15 @@
         <surefire-plugin.version>3.5.4</surefire-plugin.version>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>camunda-snapshots</id>
+            <url>https://artifacts.camunda.com/artifactory/camunda-snapshots</url>
+            <snapshots><enabled>true</enabled></snapshots>
+            <releases><enabled>false</enabled></releases>
+        </repository>
+    </repositories>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -27,6 +36,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+<!--            <dependency>-->
+<!--                <groupId>io.camunda</groupId>-->
+<!--                <artifactId>camunda-bom</artifactId>-->
+<!--                <version>8.10.0-SNAPSHOT</version>-->
+<!--                <type>pom</type>-->
+<!--                <scope>import</scope>-->
+<!--            </dependency>-->
         </dependencies>
     </dependencyManagement>
 
@@ -81,6 +97,27 @@
             <artifactId>rest-assured</artifactId>
             <scope>test</scope>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>io.quarkiverse.zeebe</groupId>-->
+<!--            <artifactId>quarkus-zeebe</artifactId>-->
+<!--            <version>1.9.0</version>-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>io.camunda</groupId>
+            <artifactId>camunda-client-java</artifactId>
+            <version>8.8.14</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.camunda</groupId>
+            <artifactId>zeebe-client-java</artifactId>
+            <version>8.5.15</version>
+        </dependency>
+
+
+
     </dependencies>
 
     <build>
