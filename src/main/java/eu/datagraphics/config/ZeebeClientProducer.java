@@ -11,7 +11,7 @@ public class ZeebeClientProducer {
     @ApplicationScoped
     ZeebeClient zeebeClient() {
         return ZeebeClient.newClientBuilder()
-                .gatewayAddress("127.0.0.1:26500")
+                .gatewayAddress("localhost:26500")
                 .usePlaintext()
                 .build();
     }

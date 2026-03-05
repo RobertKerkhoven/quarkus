@@ -15,11 +15,17 @@ public class BpmnDeployer {
     }
 
     void onStart(@Observes StartupEvent ev) {
+
+        //Test presence bpmn file.
+        var res = Thread.currentThread().getContextClassLoader()
+                .getResource("bpmn/Hello_camunda1.bpmn");
+        System.out.println("Resource = " + res);
+
         client.newDeployResourceCommand()
-                .addResourceFromClasspath("bpmn/* .bpmn")
+                //TODO: reading file from classpath not possible/enabled...! Fix?
+                //.addResourceFromClasspath("bpmn/Hello_camunda1.bpmn")
+                .addResourceFile("src/main/resources/bpmn/Hello_camunda1.bpmn")
                 .send()
                 .join();
-        System.out.println("BPMN deployed");
     }
 }
-
