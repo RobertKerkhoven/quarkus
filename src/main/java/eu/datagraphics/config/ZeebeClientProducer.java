@@ -1,4 +1,4 @@
-package eu.datagraphics;
+package eu.datagraphics.config;
 
 import io.camunda.zeebe.client.ZeebeClient;
 import jakarta.enterprise.context.ApplicationScoped;
